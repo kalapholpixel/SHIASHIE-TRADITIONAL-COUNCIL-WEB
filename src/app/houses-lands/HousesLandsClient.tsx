@@ -109,12 +109,12 @@ export default function HousesAndLands() {
     };
 
     return (
-        <div className="min-h-screen py-20 bg-background">
+        <div className="min-h-screen py-12 sm:py-20 bg-background">
             <div className="container">
-                <div className="section-title text-center mb-12">
+                <div className="section-title text-center mb-8 sm:mb-12">
                     <span className="section-subtitle">Real Estate</span>
-                    <h2 className="text-4xl font-bold mb-4 font-heading">Available Properties</h2>
-                    <p className="max-w-xl mx-auto text-muted-foreground">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 font-heading">Available Properties</h1>
+                    <p className="max-w-xl mx-auto text-sm sm:text-base md:text-lg text-muted-foreground px-2">
                         Browse our current listings of houses and lands authorized by the Shiashie Traditional Council.
                     </p>
                 </div>

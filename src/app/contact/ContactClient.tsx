@@ -39,44 +39,44 @@ export default function Contact() {
     };
 
     return (
-        <div className="min-h-screen py-20 bg-muted/20">
+        <div className="min-h-screen py-12 sm:py-20 bg-muted/20">
             <div className="container">
-                <div className="section-title text-center mb-12">
+                <div className="section-title text-center mb-8 sm:mb-12">
                     <span className="section-subtitle">Get In Touch</span>
-                    <h2 className="text-4xl font-bold mb-4 font-heading">Contact Us</h2>
-                    <p className="max-w-xl mx-auto text-muted-foreground">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 font-heading">Contact Us</h2>
+                    <p className="max-w-xl mx-auto text-sm sm:text-base md:text-lg text-muted-foreground px-2">
                         Have questions or need assistance? Reach out to our administrative office.
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <div className="grid md:grid-cols-2 gap-8 sm:gap-12 max-w-5xl mx-auto">
                     {/* Contact Info */}
-                    <div className="glass-card p-8 space-y-8 h-fit">
+                    <div className="glass-card p-6 sm:p-8 space-y-6 sm:space-y-8 h-fit">
                         <div>
-                            <h3 className="text-xl font-bold font-heading mb-4 text-primary">Office Address</h3>
-                            <p className="text-muted-foreground">Shiashie Traditional Council Office</p>
-                            <p className="text-muted-foreground">123 Tradition Avenue, Shiashie</p>
-                            <p className="text-muted-foreground">Accra, Ghana</p>
+                            <h3 className="text-lg sm:text-xl font-bold font-heading mb-3 sm:mb-4 text-primary">Office Address</h3>
+                            <p className="text-sm sm:text-base text-muted-foreground mb-2">Shiashie Traditional Council Office</p>
+                            <p className="text-sm sm:text-base text-muted-foreground mb-2">123 Tradition Avenue, Shiashie</p>
+                            <p className="text-sm sm:text-base text-muted-foreground">Accra, Ghana</p>
                         </div>
 
                         <div>
-                            <h3 className="text-xl font-bold font-heading mb-4 text-primary">Contact Details</h3>
-                            <p className="text-muted-foreground flex items-center gap-2">
+                            <h3 className="text-lg sm:text-xl font-bold font-heading mb-3 sm:mb-4 text-primary">Contact Details</h3>
+                            <p className="text-sm sm:text-base text-muted-foreground flex items-center gap-2 mb-2">
                                 <span className="font-semibold text-foreground">Phone:</span> (+233) 555-0123
                             </p>
-                            <p className="text-muted-foreground flex items-center gap-2">
+                            <p className="text-sm sm:text-base text-muted-foreground flex items-center gap-2">
                                 <span className="font-semibold text-foreground">Email:</span> contact@shiashie.org
                             </p>
                         </div>
 
-                        <div className="w-full h-48 bg-muted rounded-lg flex items-center justify-center text-muted-foreground">
+                        <div className="w-full h-40 sm:h-48 bg-muted rounded-lg flex items-center justify-center text-muted-foreground text-sm sm:text-base">
                             [Google Map Placeholder]
                         </div>
                     </div>
 
                     {/* Contact Form */}
-                    <div className="glass-card p-8">
-                        <h3 className="text-2xl font-bold font-heading mb-6">Send us a Message</h3>
+                    <div className="glass-card p-6 sm:p-8">
+                        <h3 className="text-xl sm:text-2xl md:text-3xl font-bold font-heading mb-5 sm:mb-6">Send us a Message</h3>
 
                         {status === "success" ? (
                             <div className="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 p-4 rounded-lg text-center animate-fade-in">

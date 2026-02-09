@@ -42,12 +42,12 @@ export default function MessageCouncil() {
     };
 
     return (
-        <div className="min-h-screen py-20 bg-background">
-            <div className="container max-w-4xl mx-auto">
-                <div className="text-center mb-12">
+        <div className="min-h-screen py-12 sm:py-20 bg-background">
+            <div className="container max-w-4xl mx-auto px-4">
+                <div className="text-center mb-8 sm:mb-12">
                     <span className="section-subtitle">Direct Communication</span>
-                    <h2 className="text-4xl font-bold mb-4 font-heading">Message the Traditional Council</h2>
-                    <p className="text-muted-foreground mx-auto max-w-2xl">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 font-heading">Message the Traditional Council</h1>
+                    <p className="text-sm sm:text-base md:text-lg text-muted-foreground mx-auto max-w-2xl px-2">
                         This channel is reserved for matters requiring the direct attention of the Council Elders.
                         Please use this form respectfully for inquiries regarding traditional customs, disputes, or community welfare.
                     </p>
