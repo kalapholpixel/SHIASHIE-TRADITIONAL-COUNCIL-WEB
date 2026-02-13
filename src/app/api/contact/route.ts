@@ -1,5 +1,5 @@
 import { Resend } from "resend";
-import { supabase } from "@/utils/supabase";
+import { getSupabaseClient } from "@/utils/supabase";
 import { NextResponse } from "next/server";
 
 const COUNCIL_EMAIL = process.env.COUNCIL_EMAIL || "shiashie@yanorei.resend.app";
@@ -68,6 +68,7 @@ export async function POST(request: Request) {
 
         // Store in database as backup (best-effort)
         try {
+            const supabase = getSupabaseClient();
             const { error: dbError } = await supabase
                 .from("messages")
                 .insert([{ name, email, phone, message }]);
