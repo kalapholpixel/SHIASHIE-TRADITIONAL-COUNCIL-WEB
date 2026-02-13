@@ -1,0 +1,68 @@
+# Netlify Configuration for Shiashie Traditional Council Web
+
+[build]
+  # Build command
+  command = "npm run build"
+  
+  # Directory to publish
+  publish = ".next"
+  
+  # Increase timeout (max is 15 minutes on most plans, we'll use a reasonable limit)
+  # Note: This affects how long builds can run
+  functions = "netlify/functions"
+
+# Environment variables
+[build.environment]
+  # Next.js optimization
+  NODE_ENV = "production"
+  
+  # Disable image optimization on Netlify to speed up builds
+  SKIP_IMAGE_OPTIMIZATION = "true"
+  
+  # Node version
+  NODE_VERSION = "20"
+
+# Increase build timeout and memory
+[context.production]
+  # Set environment variables for production
+  [context.production.environment]
+    NODE_OPTIONS = "--max-old-space-size=3072"
+
+[context.deploy-preview]
+  # Set environment variables for deploy preview
+  [context.deploy-preview.environment]
+    NODE_OPTIONS = "--max-old-space-size=2048"
+
+[context.branch-deploy]
+  # Set environment variables for branch deploy
+  [context.branch-deploy.environment]
+    NODE_OPTIONS = "--max-old-space-size=2048"
+
+# Redirect rules
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# Custom headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

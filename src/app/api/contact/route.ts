@@ -66,19 +66,25 @@ export async function POST(request: Request) {
             );
         }
 
-        // Store in database as backup (best-effort)
+        // Store in database as backup (best-effort, non-blocking)
         try {
-            const supabase = getSupabaseClient();
-            const { error: dbError } = await supabase
-                .from("messages")
-                .insert([{ name, email, phone, message }]);
+            const supabaseClient = getSupabaseClient();
+            if (supabaseClient) {
+                const { error: dbError } = await supabaseClient
+                    .from("messages")
+                    .insert([{ name, email, phone, message }]);
 
-            if (dbError) {
-                console.error("Database error (backup insert):", dbError);
+                if (dbError) {
+                    console.error("Database error (backup insert):", dbError);
+                    // proceed — email already sent
+                }
+            } else {
+                console.warn("Supabase not available for backup storage");
                 // proceed — email already sent
             }
         } catch (dbErr: any) {
             console.error("Unexpected DB error:", dbErr);
+            // proceed — email already sent
         }
 
         return NextResponse.json(

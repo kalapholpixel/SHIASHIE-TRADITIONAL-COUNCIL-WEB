@@ -3,31 +3,48 @@ import { createClient } from "@supabase/supabase-js";
 
 let supabaseInstance: ReturnType<typeof createClient> | null = null;
 
+/**
+ * Initialize Supabase client
+ * Only initialize if environment variables are available
+ */
 function initSupabaseClient() {
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
+    // During build time, these variables might not be available
     if (!supabaseUrl || !supabaseAnonKey) {
-        throw new Error(
-            "Supabase credentials are missing. Please ensure NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY are set."
+        console.warn(
+            "⚠️ Supabase credentials are not available. This is expected during build time."
         );
+        return null;
     }
 
     return createClient(supabaseUrl, supabaseAnonKey);
 }
 
+/**
+ * Get Supabase client instance
+ * Returns null if credentials are not available (e.g., during build)
+ */
 export function getSupabaseClient() {
-    if (!supabaseInstance) {
+    if (supabaseInstance === undefined) {
         supabaseInstance = initSupabaseClient();
     }
     return supabaseInstance;
 }
 
-// Lazy singleton export for backward compatibility
-export const supabase = new Proxy({}, {
-    get: (_target, prop) => {
-        const client = getSupabaseClient();
-        const value = (client as any)[prop];
-        return typeof value === 'function' ? value.bind(client) : value;
+/**
+ * Lazy singleton export for backward compatibility
+ * Safe for runtime use only
+ */
+export const supabase = {
+    get client() {
+        const instance = getSupabaseClient();
+        if (!instance) {
+            throw new Error(
+                "Supabase client not initialized. Ensure NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY are set."
+            );
+        }
+        return instance;
     }
-}) as ReturnType<typeof createClient>;
+};
