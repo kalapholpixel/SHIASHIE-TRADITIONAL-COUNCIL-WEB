@@ -1,24 +1,8 @@
-import { Resend } from "resend";
 import { getSupabaseClient } from "@/utils/supabase";
 import { NextResponse } from "next/server";
 
-const COUNCIL_EMAIL = process.env.COUNCIL_EMAIL || "shiashie@yanorei.resend.app";
-const RESEND_FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
-
 export async function POST(request: Request) {
     try {
-        const resendApiKey = process.env.RESEND_API_KEY;
-
-        if (!resendApiKey) {
-            console.error("RESEND_API_KEY is not set");
-            return NextResponse.json(
-                { error: "RESEND_API_KEY is not configured on the server" },
-                { status: 500 }
-            );
-        }
-
-        const resend = new Resend(resendApiKey);
-
         const { name, email, phone, message } = await request.json();
 
         // Validate required fields
@@ -29,66 +13,30 @@ export async function POST(request: Request) {
             );
         }
 
-        // Build email HTML
-        const html = `
-            <h2>New Contact Form Submission</h2>
-            <p><strong>From:</strong> ${name}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ""}
-            <p><strong>Message:</strong></p>
-            <p>${message.replace(/\n/g, "<br />")}</p>
-        `;
-
-        // Attempt to send email and capture detailed errors for debugging
-        let emailResponse: any;
-        try {
-            emailResponse = await resend.emails.send({
-                // From address configured in environment variables
-                from: RESEND_FROM_EMAIL,
-                to: COUNCIL_EMAIL,
-                subject: `New Message from ${name}`,
-                html,
-            });
-        } catch (sendErr: any) {
-            console.error("Resend send error:", sendErr);
+        // Store message in database
+        const supabaseClient = getSupabaseClient();
+        if (!supabaseClient) {
+            console.warn("Supabase client not configured. Cannot store message.");
             return NextResponse.json(
-                { error: "Failed to send email via Resend", details: String(sendErr?.message || sendErr) },
-                { status: 502 }
+                { error: "Database not configured on the server" },
+                { status: 500 }
             );
         }
 
-        // Check for unexpected shape
-        if (emailResponse?.error) {
-            console.error("Resend returned error:", emailResponse.error);
+        const { error: dbError } = await supabaseClient
+            .from("messages")
+            .insert([{ name, email, phone, message }] as any);
+
+        if (dbError) {
+            console.error("Database error (insert):", dbError);
             return NextResponse.json(
-                { error: "Resend returned an error", details: emailResponse.error },
-                { status: 502 }
+                { error: "Failed to store message in database" },
+                { status: 500 }
             );
-        }
-
-        // Store in database as backup (best-effort, non-blocking)
-        try {
-            const supabaseClient = getSupabaseClient();
-            if (supabaseClient) {
-                const { error: dbError } = await supabaseClient
-                    .from("messages")
-                    .insert([{ name, email, phone, message }] as any);
-
-                if (dbError) {
-                    console.error("Database error (backup insert):", dbError);
-                    // proceed — email already sent
-                }
-            } else {
-                console.warn("Supabase not available for backup storage");
-                // proceed — email already sent
-            }
-        } catch (dbErr: any) {
-            console.error("Unexpected DB error:", dbErr);
-            // proceed — email already sent
         }
 
         return NextResponse.json(
-            { success: true, message: "Message sent successfully", resend: { id: emailResponse?.id } },
+            { success: true, message: "Message saved successfully" },
             { status: 200 }
         );
     } catch (error: any) {
