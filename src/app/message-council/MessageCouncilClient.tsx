@@ -23,7 +23,7 @@ export default function MessageCouncil() {
         setErrorMessage("");
 
         try {
-            const { error } = await supabase
+            const { error } = await supabase.client
                 .from("messages")
                 .insert([{
                     ...formData,
