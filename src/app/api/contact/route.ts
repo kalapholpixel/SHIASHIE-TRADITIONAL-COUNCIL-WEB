@@ -72,7 +72,7 @@ export async function POST(request: Request) {
             if (supabaseClient) {
                 const { error: dbError } = await supabaseClient
                     .from("messages")
-                    .insert([{ name, email, phone, message }]);
+                    .insert([{ name, email, phone, message } as any]);
 
                 if (dbError) {
                     console.error("Database error (backup insert):", dbError);
