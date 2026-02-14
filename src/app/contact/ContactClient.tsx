@@ -23,7 +23,8 @@ export default function Contact() {
         setErrorMessage("");
 
         try {
-            const { error } = await supabase
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const { error } = await (supabase as any)
                 .from("messages")
                 .insert([{
                     name: formData.name,

@@ -23,20 +23,15 @@ export default function MessageCouncil() {
         setErrorMessage("");
 
         try {
-            const { error } = await supabase.client
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const { error } = await (supabase as any)
                 .from("messages")
                 .insert([{
-<<<<<<< HEAD
                     name: formData.name,
                     email: formData.email,
                     phone: formData.phone || null,
                     message: `[COUNCIL MESSAGE] ${formData.message}`,
                 }]);
-=======
-                    ...formData,
-                    message: `[COUNCIL MESSAGE] ${formData.message}`
-                }] as any);
->>>>>>> 8087c5f9b5d0a4e550ee2f65a443d4dbab2c5476
 
             if (error) throw error;
 

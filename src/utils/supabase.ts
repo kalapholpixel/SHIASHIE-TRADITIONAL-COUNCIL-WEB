@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 
-let supabaseInstance: ReturnType<typeof createClient> | null = null;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let supabaseInstance: any = undefined;
 
 /**
  * Initialize Supabase client
@@ -41,6 +42,7 @@ export function getSupabaseClient() {
 /**
  * Supabase client for use in components (e.g. supabase.from("table"))
  * Proxies to the real client; throws if not configured
+ * Uses type assertion for Proxy which doesn't preserve Supabase generics
  */
 export const supabase = new Proxy({} as ReturnType<typeof createClient>, {
     get(_, prop) {
@@ -52,4 +54,4 @@ export const supabase = new Proxy({} as ReturnType<typeof createClient>, {
         }
         return (client as Record<string | symbol, unknown>)[prop];
     }
-});
+}) as ReturnType<typeof createClient>;

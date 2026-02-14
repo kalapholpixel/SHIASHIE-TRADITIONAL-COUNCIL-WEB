@@ -91,9 +91,9 @@ export default function HousesAndLands() {
         setStatus("loading");
 
         try {
-            const { error } = await supabase.client
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const { error } = await (supabase as any)
                 .from("land_inquiries")
-<<<<<<< HEAD
                 .insert([{
                     name: formData.name,
                     email: formData.email,
@@ -101,9 +101,6 @@ export default function HousesAndLands() {
                     interest_type: formData.interest_type,
                     message: formData.message || null,
                 }]);
-=======
-                .insert([formData] as any);
->>>>>>> 8087c5f9b5d0a4e550ee2f65a443d4dbab2c5476
 
             if (error) throw error;
 
