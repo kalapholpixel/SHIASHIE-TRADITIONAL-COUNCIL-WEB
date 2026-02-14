@@ -78,8 +78,8 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
             {/* Card 1 */}
             <div className="glass-card p-6 sm:p-8 hover:shadow-xl hover:transform hover:-translate-y-3 transition-all duration-300 animate-slide-up delay-100 group">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary/40 via-primary/20 to-transparent text-primary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-125 group-hover:rotate-6 transition-all duration-300 shadow-lg">
-                <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-primary/40 via-primary/20 to-transparent text-primary rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-125 group-hover:rotate-6 transition-all duration-300 shadow-lg">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
               </div>
@@ -95,8 +95,8 @@ export default function Home() {
 
             {/* Card 2 */}
             <div className="glass-card p-6 sm:p-8 hover:shadow-xl hover:transform hover:-translate-y-3 transition-all duration-300 animate-slide-up delay-200 group">
-              <div className="w-16 h-16 bg-gradient-to-br from-accent/40 via-accent/20 to-transparent text-accent rounded-2xl flex items-center justify-center mb-6 group-hover:scale-125 group-hover:rotate-6 transition-all duration-300 shadow-lg">
-                <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-accent/40 via-accent/20 to-transparent text-accent rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-125 group-hover:rotate-6 transition-all duration-300 shadow-lg">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
                 </svg>
               </div>
@@ -112,8 +112,8 @@ export default function Home() {
 
             {/* Card 3 */}
             <div className="glass-card p-6 sm:p-8 hover:shadow-xl hover:transform hover:-translate-y-3 transition-all duration-300 animate-slide-up delay-300 group">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary/40 via-primary/20 to-transparent text-primary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-125 group-hover:rotate-6 transition-all duration-300 shadow-lg">
-                <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-primary/40 via-primary/20 to-transparent text-primary rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-125 group-hover:rotate-6 transition-all duration-300 shadow-lg">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
               </div>

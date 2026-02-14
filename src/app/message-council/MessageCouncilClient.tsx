@@ -26,8 +26,10 @@ export default function MessageCouncil() {
             const { error } = await supabase
                 .from("messages")
                 .insert([{
-                    ...formData,
-                    message: `[COUNCIL MESSAGE] ${formData.message}`
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone || null,
+                    message: `[COUNCIL MESSAGE] ${formData.message}`,
                 }]);
 
             if (error) throw error;

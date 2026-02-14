@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { supabase } from "@/utils/supabase";
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -22,26 +23,23 @@ export default function Contact() {
         setErrorMessage("");
 
         try {
-            const response = await fetch("/api/contact", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(formData),
-            });
+            const { error } = await supabase
+                .from("messages")
+                .insert([{
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone || null,
+                    message: formData.message,
+                }]);
 
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.error || "Failed to send message");
-            }
+            if (error) throw error;
 
             setStatus("success");
             setFormData({ name: "", email: "", phone: "", message: "" });
-        } catch (error: any) {
+        } catch (error: unknown) {
             console.error("Error submitting form:", error);
             setStatus("error");
-            setErrorMessage(error.message || "Failed to send message. Please try again.");
+            setErrorMessage("Failed to send message. Please try again.");
         }
     };
 
