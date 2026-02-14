@@ -1,9 +1,8 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   // Production optimizations
   compress: true,
-  
+
   // Image optimization
   images: {
     formats: ['image/avif', 'image/webp'],
@@ -12,8 +11,6 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 60,
     unoptimized: process.env.SKIP_IMAGE_OPTIMIZATION === 'true', // For Netlify
   },
-
-
 
   // Increase build timeout settings
   onDemandEntries: {
@@ -34,4 +31,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;

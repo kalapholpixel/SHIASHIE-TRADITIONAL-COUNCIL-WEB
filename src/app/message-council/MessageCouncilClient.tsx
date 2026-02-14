@@ -28,7 +28,7 @@ export default function MessageCouncil() {
                 .insert([{
                     ...formData,
                     message: `[COUNCIL MESSAGE] ${formData.message}`
-                }]);
+                }] as any);
 
             if (error) throw error;
 

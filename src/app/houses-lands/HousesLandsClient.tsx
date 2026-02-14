@@ -93,7 +93,7 @@ export default function HousesAndLands() {
         try {
             const { error } = await supabase.client
                 .from("land_inquiries")
-                .insert([formData]);
+                .insert([formData] as any);
 
             if (error) throw error;
 

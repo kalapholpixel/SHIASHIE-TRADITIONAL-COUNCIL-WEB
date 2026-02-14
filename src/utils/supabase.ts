@@ -1,13 +1,13 @@
 
 import { createClient } from "@supabase/supabase-js";
 
-let supabaseInstance: ReturnType<typeof createClient> | null = null;
+let supabaseInstance: any;
 
 /**
  * Initialize Supabase client
  * Only initialize if environment variables are available
  */
-function initSupabaseClient() {
+function initSupabaseClient(): any | null {
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
@@ -27,7 +27,7 @@ function initSupabaseClient() {
  * Returns null if credentials are not available (e.g., during build)
  */
 export function getSupabaseClient() {
-    if (supabaseInstance === undefined) {
+    if (typeof supabaseInstance === "undefined") {
         supabaseInstance = initSupabaseClient();
     }
     return supabaseInstance;
