@@ -13,13 +13,7 @@ const nextConfig: NextConfig = {
     unoptimized: process.env.SKIP_IMAGE_OPTIMIZATION === 'true', // For Netlify
   },
 
-  // Build optimization
-  swcMinify: true,
-  
-  // Experimental features for better performance
-  experimental: {
-    turbopack: process.env.TURBOPACK === 'true' ? {} : undefined,
-  },
+
 
   // Increase build timeout settings
   onDemandEntries: {
