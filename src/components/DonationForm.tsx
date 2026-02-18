@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { validateEmail, validatePhone, validateAmount, sanitizeInput } from '@/lib/validation';
+import { formatCurrency, currency } from '@/config/site-content';
 
 declare global {
   interface Window {
@@ -213,7 +214,7 @@ export default function DonationForm() {
                     : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                 }`}
               >
-                GHS {amt}
+                {formatCurrency(amt)}
               </button>
             ))}
           </div>
@@ -222,7 +223,7 @@ export default function DonationForm() {
         <div className="mb-4">
           <label className="block text-gray-700 font-semibold mb-2">Or Enter Custom Amount</label>
           <div className="relative">
-            <span className="absolute left-3 top-3 text-gray-600">GHS</span>
+            <span className="absolute left-3 top-3 text-gray-600">{currency.symbol}</span>
             <input
               type="number"
               value={customAmount}
@@ -237,7 +238,7 @@ export default function DonationForm() {
             />
           </div>
           <p className="text-sm text-gray-500 mt-1">
-            Amount: GHS {getAmount().toLocaleString()}
+            Amount: {formatCurrency(getAmount())}
           </p>
         </div>
       </div>

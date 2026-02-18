@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 import { validateEmail, validatePhone, validateAmount, sanitizeInput } from '@/lib/validation';
-import { crypto } from 'node:crypto';
 
 function generateReference(): string {
   return `DONATION_${Date.now()}_${Math.random().toString(36).substring(2, 9).toUpperCase()}`;

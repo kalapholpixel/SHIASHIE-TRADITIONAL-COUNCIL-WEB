@@ -20,6 +20,24 @@ export const fonts = {
 };
 
 // ============================================================================
+// CURRENCY SETTINGS
+// ============================================================================
+export const currency = {
+  code: 'GHS',
+  symbol: '₵',
+  name: 'Ghana Cedis',
+  locale: 'en-GH',
+};
+
+// Helper function to format currency
+export const formatCurrency = (amount: number): string => {
+  return new Intl.NumberFormat(currency.locale, {
+    style: 'currency',
+    currency: currency.code,
+  }).format(amount);
+};
+
+// ============================================================================
 // NAVIGATION
 // ============================================================================
 export const navigation = {
