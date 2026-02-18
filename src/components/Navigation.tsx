@@ -1,7 +1,9 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
+import { navigation } from '@/config/site-content';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,8 +20,14 @@ export default function Navigation() {
   return (
     <nav className="bg-primary text-white shadow-lg">
       <div className="container-main flex justify-between items-center py-4">
-        <Link href="/" className="text-2xl font-serif font-bold">
-          Shiashie Council
+        <Link href="/" className="flex items-center">
+          <Image
+            src={navigation.logoImage}
+            alt="Shiashie Traditional Council Logo"
+            width={60}
+            height={60}
+            className="h-14 w-auto"
+          />
         </Link>
 
         {/* Desktop Navigation */}
