@@ -1,4 +1,11 @@
 import DonationForm from '@/components/DonationForm';
+import { donationPage } from '@/config/site-content';
+
+const donationImpactAreas = [
+  { title: 'Community Projects', description: 'Your donations fund infrastructure, education, and welfare programs that benefit our entire community.' },
+  { title: 'Cultural Preservation', description: 'We maintain and celebrate our Ghanaian traditions, festivals, and cultural heritage for future generations.' },
+  { title: 'Member Support', description: 'We assist members during difficult times and provide emergency support and community welfare services.' },
+];
 
 export default function Donate() {
   return (
@@ -6,9 +13,9 @@ export default function Donate() {
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-accent to-primary text-white py-16">
         <div className="container-main">
-          <h1 className="text-4xl font-serif font-bold mb-4">Support Our Community</h1>
+          <h1 className="text-4xl font-serif font-bold mb-4">{donationPage.title}</h1>
           <p className="text-lg text-green-100">
-            Your donation helps us preserve our heritage and support community development
+            {donationPage.description}
           </p>
         </div>
       </section>
@@ -18,24 +25,14 @@ export default function Donate() {
         <div className="container-main">
           <h2 className="text-3xl font-serif font-bold mb-12 text-center">Why Your Donation Matters</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6 bg-green-50 rounded-lg">
-              <h3 className="text-xl font-serif font-bold text-accent mb-3">Community Projects</h3>
-              <p className="text-gray-700">
-                Your donations fund infrastructure, education, and welfare programs that benefit our entire community.
-              </p>
-            </div>
-            <div className="text-center p-6 bg-green-50 rounded-lg">
-              <h3 className="text-xl font-serif font-bold text-accent mb-3">Cultural Preservation</h3>
-              <p className="text-gray-700">
-                We maintain and celebrate our Ghanaian traditions, festivals, and cultural heritage for future generations.
-              </p>
-            </div>
-            <div className="text-center p-6 bg-green-50 rounded-lg">
-              <h3 className="text-xl font-serif font-bold text-accent mb-3">Member Support</h3>
-              <p className="text-gray-700">
-                We assist members during difficult times and provide emergency support and community welfare services.
-              </p>
-            </div>
+            {donationImpactAreas.map((area, index) => (
+              <div key={index} className="text-center p-6 bg-green-50 rounded-lg">
+                <h3 className="text-xl font-serif font-bold text-accent mb-3">{area.title}</h3>
+                <p className="text-gray-700">
+                  {area.description}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

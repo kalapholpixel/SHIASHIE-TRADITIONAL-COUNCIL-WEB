@@ -1,4 +1,5 @@
 import ContactForm from '@/components/ContactForm';
+import { contactPage } from '@/config/site-content';
 
 export default function Contact() {
   return (
@@ -6,9 +7,9 @@ export default function Contact() {
       {/* Hero Section */}
       <section className="bg-primary text-white py-16">
         <div className="container-main">
-          <h1 className="text-4xl font-serif font-bold mb-4">Contact Us</h1>
+          <h1 className="text-4xl font-serif font-bold mb-4">{contactPage.title}</h1>
           <p className="text-lg text-secondary">
-            We'd love to hear from you. Get in touch with any questions.
+            {contactPage.description}
           </p>
         </div>
       </section>
@@ -17,18 +18,12 @@ export default function Contact() {
       <section className="py-16">
         <div className="container-main">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <div className="contact-info-card text-center p-6 bg-gray-50 rounded-lg">
-              <h3 className="text-2xl font-serif font-bold text-primary mb-2">📧 Email</h3>
-              <p className="text-gray-600">info@shiashiecouncil.com</p>
-            </div>
-            <div className="contact-info-card text-center p-6 bg-gray-50 rounded-lg">
-              <h3 className="text-2xl font-serif font-bold text-primary mb-2">📱 Phone</h3>
-              <p className="text-gray-600">+233 XXX XXX XXXX</p>
-            </div>
-            <div className="contact-info-card text-center p-6 bg-gray-50 rounded-lg">
-              <h3 className="text-2xl font-serif font-bold text-primary mb-2">📍 Address</h3>
-              <p className="text-gray-600">Shiashie, Accra, Ghana</p>
-            </div>
+            {contactPage.contactInfo.map((info, index) => (
+              <div key={index} className="contact-info-card text-center p-6 bg-gray-50 rounded-lg">
+                <h3 className="text-2xl font-serif font-bold text-primary mb-2">{info.icon} {info.title}</h3>
+                <p className="text-gray-600">{info.value}</p>
+              </div>
+            ))}
           </div>
 
           {/* Contact Form */}

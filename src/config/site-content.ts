@@ -233,7 +233,7 @@ export const footer = {
     { label: 'Contact', href: '/contact' },
   ],
   contactInfo: {
-    phone: '+233 XXX XXX XXXX', // Update with actual number
+    phone: '+233-24-122-4172', // Update with actual number
     email: 'shiashietraditionalcouncil@gmail.com', // Update with actual email - messages will be sent here
     address: 'Shiashie, Accra, Ghana',
   },
@@ -260,7 +260,7 @@ export const contactPage = {
   contactInfo: [
     {
       title: 'Phone',
-      value: '+233 XXX XXX XXXX', // Update with actual number
+      value: '+233-24-122-4172', // Update with actual number
       icon: '📞',
     },
     {

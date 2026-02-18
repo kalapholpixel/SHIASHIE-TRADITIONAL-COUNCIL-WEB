@@ -1,57 +1,7 @@
 import PropertyCard from '@/components/PropertyCard';
+import { properties as siteProperties } from '@/config/site-content';
 
 export default function HousesLands() {
-  const properties = [
-    {
-      id: '1',
-      title: 'Modern Residential Plot',
-      location: 'Shiashie, Accra',
-      type: 'Land',
-      price: 'GHS 45,000',
-      description: 'Well-developed residential plot with excellent accessibility. 60ft x 80ft, perfect for building your dream home.',
-    },
-    {
-      id: '2',
-      title: 'Family House',
-      location: 'Shiashie Main Street',
-      type: 'House',
-      price: 'GHS 250,000',
-      description: '4-bedroom semi-detached house with modern facilities. Recently renovated with indoor kitchen and modern plumbing.',
-    },
-    {
-      id: '3',
-      title: 'Commercial Space',
-      location: 'Shiashie Business District',
-      type: 'Land',
-      price: 'GHS 60,000',
-      description: 'Strategic commercial plot ideal for business ventures. High foot traffic area with great investment potential.',
-    },
-    {
-      id: '4',
-      title: 'Luxury Villa',
-      location: 'Shiashie Heights',
-      type: 'House',
-      price: 'GHS 450,000',
-      description: '5-bedroom luxury villa with swimming pool, modern security, and premium finishes. Perfect for executives.',
-    },
-    {
-      id: '5',
-      title: 'Agricultural Land',
-      location: 'Shiashie Extension',
-      type: 'Land',
-      price: 'GHS 35,000',
-      description: 'Large agricultural plot with water access. Ideal for farming, gardening, or future development.',
-    },
-    {
-      id: '6',
-      title: 'Mixed-Use Property',
-      location: 'Shiashie Central',
-      type: 'Land',
-      price: 'GHS 80,000',
-      description: 'Prime land suitable for mixed residential and commercial use. Located near schools and hospitals.',
-    },
-  ];
-
   return (
     <div>
       {/* Hero Section */}
@@ -89,7 +39,7 @@ export default function HousesLands() {
         <div className="container-main">
           <h2 className="text-3xl font-serif font-bold mb-12 text-center">Featured Properties</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {properties.map((property) => (
+            {siteProperties.map((property) => (
               <PropertyCard key={property.id} {...property} />
             ))}
           </div>
