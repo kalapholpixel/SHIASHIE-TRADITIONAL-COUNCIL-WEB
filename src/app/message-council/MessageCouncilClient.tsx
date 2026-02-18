@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { supabase } from "@/utils/supabase";
 
 export default function MessageCouncil() {
     const [formData, setFormData] = useState({
@@ -23,24 +22,30 @@ export default function MessageCouncil() {
         setErrorMessage("");
 
         try {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const { error } = await (supabase as any)
-                .from("messages")
-                .insert([{
+            const response = await fetch('/api/send-council-message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
                     name: formData.name,
                     email: formData.email,
-                    phone: formData.phone || null,
-                    message: `[COUNCIL MESSAGE] ${formData.message}`,
-                }]);
+                    phone: formData.phone,
+                    message: formData.message,
+                }),
+            });
 
-            if (error) throw error;
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.error || 'Failed to send message');
+            }
 
             setStatus("success");
             setFormData({ name: "", email: "", phone: "", message: "" });
         } catch (error: any) {
             console.error("Error submitting form:", error);
             setStatus("error");
-            setErrorMessage("Failed to send message. Please try again.");
+            setErrorMessage(error.message || "Failed to send message. Please try again.");
         }
     };
 
